@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0 user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <section class="splash-screen load">
+        <div class="logo-body">
+            <div class="seagull-part seagulls"></div>
+            <div class="seagull-part" id="left-wing"></div>
+            <div class="seagull-part" id="left-tail"></div>
+            <div class="seagull-part" id="right-sunglasses"></div>
+            <div class="seagull-part" id="right-wing"></div>
+            <div class="seagull-part year"></div>
+        </div>
+        <div class="title">
+            <h1 class="title-top"><span class="big">T</span>he</h1>
+            <h1 class="title-bottom"><span class="big">S</span>hor<span class="big">E</span></h1>
+        </div>
+        <div class="buttons grey-with-red">
+            <a class="purple-with-blue">Countdown till it's back again</a>
+        </div>
+        <div id="clockdiv">
+            <div>
+                <span class="days"></span>
+                <div class="smalltext">Days</div>
+            </div>
+            <div>
+                <span class="hours"></span>
+                <div class="smalltext">Hours</div>
+            </div>
+            <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Minutes</div>
+            </div>
+            <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Seconds</div>
+            </div>
+        </div>
+
+        <div class="canvas">
+
+            <div class="bubble b1">
+                <div class="bubble-shine"></div>
+            </div>
+
+            <div class="bubble b2">
+                <div class="bubble-shine"></div>
+            </div>
+
+            <div class="bubble b3">
+                <div class="bubble-shine"></div>
+            </div>
+
+            <div class="bottom">
+                <span class="yellow">©</span>
+                <span class="yellow-with-darkyellow"> season 2019</span>
+            </div>
+
+            <div class="jellyfish">
+                <!--   Main Tentacles -->
+                <!--   Outer -->
+                <div class="tentacle tentacle-left">
+                    <div class="tentacle-left-tip"></div>
+                </div>
+                <div class="tentacle tentacle-right">
+                    <div class="tentacle-right-tip"></div>
+                </div>
+                <!--   Inner -->
+                <div class="tentacle inner-left">
+                    <div class="tentacle-tip inner-left"></div>
+                </div>
+
+                <div class="tentacle inner-right">
+                    <div class="tentacle-tip inner-right"></div>
+                </div>
+
+                <!-- Thin -->
+                <div class="tentacle-thin-group">
+                    <div class="tentacle-thin t1"></div>
+                    <div class="tentacle-thin t2"></div>
+                    <div class="tentacle-thin t3"></div>
+                    <div class="tentacle-thin t4"></div>
+                    <div class="tentacle-thin t5"></div>
+                    <div class="tentacle-thin t6"></div>
+
+                    <div class="tentacle-thin t7"></div>
+                    <div class="tentacle-thin t8"></div>
+                    <div class="tentacle-thin t9"></div>
+                    <div class="tentacle-thin t10"></div>
+                    <div class="tentacle-thin t11"></div>
+                    <div class="tentacle-thin t12"></div>
+
+                    <div class="tentacle-thin t13"></div>
+                    <div class="tentacle-thin t14"></div>
+                    <div class="tentacle-thin t15"></div>
+                    <div class="tentacle-thin t16"></div>
+                    <div class="tentacle-thin t17"></div>
+                    <div class="tentacle-thin t18"></div>
+                </div>
+                <!--   Head -->
+                <div class="head"></div>
+                <div class="head-edge"></div>
+                <div class="head-shine"></div>
+                <div class="head-spot-1 spot"></div>
+                <div class="head-spot-2 spot"></div>
+                <div class="head-spot-3 spot"></div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        var deadline = '2019-03-19';
+
+        function getTimeRemaining(endtime) {
+            var t = Date.parse(endtime) - Date.parse(new Date());
+            var seconds = Math.floor((t / 1000) % 60);
+            var minutes = Math.floor((t / 1000 / 60) % 60);
+            var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            return {
+                'total': t,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+            };
+        }
+
+        function initializeClock(id, endtime) {
+            var clock = document.getElementById(id);
+            var daysSpan = clock.querySelector('.days');
+            var hoursSpan = clock.querySelector('.hours');
+            var minutesSpan = clock.querySelector('.minutes');
+            var secondsSpan = clock.querySelector('.seconds');
+
+            function updateClock() {
+                var t = getTimeRemaining(endtime);
+
+                daysSpan.innerHTML = t.days;
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                }
+            }
+
+            updateClock();
+            var timeinterval = setInterval(updateClock, 1000);
+        }
+        initializeClock('clockdiv', deadline);
+    </script>
+
+</body>
+
+</html>
